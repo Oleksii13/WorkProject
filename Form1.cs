@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Configuration;
+using System.Collections.Specialized;
+
 namespace WorkProject
 {
     public partial class Form1 : Form
     {
+        int interval = int.Parse(ConfigurationManager.AppSettings["interval"]);
+
         static string lastLine;
         private Timer tm = new Timer();
-        static string path = @"C:\Users\User\Documents\File.txt";
+        static string path = @"C:\File.txt";
         public Form1()
         {
             InitializeComponent();
@@ -39,7 +44,7 @@ namespace WorkProject
         {
             tm.Tick -= new EventHandler(timer1_Tick);
             tm.Tick += new EventHandler(timer1_Tick);
-            tm.Interval = 2000;
+            tm.Interval = interval;
             tm.Enabled = true;
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -71,7 +76,7 @@ namespace WorkProject
         {
             tm.Enabled = false;
             FileSystemWatcher watcher = new FileSystemWatcher();
-                watcher.Path = @"C:\Users\User\Documents\";
+                watcher.Path = @"C:\";
                 watcher.NotifyFilter = NotifyFilters.LastAccess
                                        | NotifyFilters.LastWrite;
                 watcher.Filter = "File.txt";
@@ -83,6 +88,12 @@ namespace WorkProject
         {
             lastLine = File.ReadLines(path).Last().ToString();
             SetText(lastLine.ToString());
+        }
+
+        //Text Box
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

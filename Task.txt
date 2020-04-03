@@ -1,0 +1,9 @@
+Write a C# Windows application that writes a line to a file every 5 seconds (preferably configurable through UI dropdown or config file). Now when this file changes your UI should pick up the change from the File and display the last written line on the UI. The UI should have a “Start” and “Stop” button. With the following functionality:
+“Start” button: Start writing and observing changes in the file.
+“Stop” button: Stop writing to the file but still observe the changes in the file.
+After hitting the “Stop” button open and edit the file manually and check that the UI gets updated.
+ 
+Expected line contents:
+<Line#> 2019/12/23 07:00:00 AM
+<Line#> 2019/12/23 07:00:01 AM
+<Line#> 2019/12/23 07:00:02 AM 
